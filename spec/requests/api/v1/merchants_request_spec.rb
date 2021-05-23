@@ -24,19 +24,20 @@ describe "customers API" do
   it "can get one merchant by its id" do
 
     merchant = Merchant.create(name: "my merchant name")
-    # id = create(:merchant).id
 
     get "/api/v1/merchants/#{merchant.id}"
 
-    book = JSON.parse(response.body, symbolize_names: true)
+    merchant = JSON.parse(response.body, symbolize_names: true)
+
+# binding.pry
 
     expect(response).to be_successful
 
-    expect(book).to have_key(:id)
-    expect(book[:id]).to eq(merchant.id)
+    expect(merchant).to have_key(:id)
+    expect(merchant[:id]).to eq(merchant.id)
 
-    expect(book).to have_key(:name)
-    expect(book[:name]).to be_a(String)
+    expect(merchant).to have_key(:name)
+    expect(merchant[:name]).to be_a(String)
   end
 
 

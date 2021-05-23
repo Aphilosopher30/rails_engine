@@ -5,6 +5,7 @@ class Merchant < ApplicationRecord
   has_many :customers, through: :invoices
   has_many :transactions, through: :invoices
 
+  # attr_accessor :id, :name
 
 
 end
