@@ -15,14 +15,38 @@ class Api::V1::MerchantsController < ApplicationController
   def show
     merchant = Merchant.find_by(id: params[:id])
     if merchant.nil?
-      # info_not_found
-      # raise ActionController::RoutingError.new('Not Found')
-      render  status: 404
+      info_not_found
+      # render  status: 404
     else
       render json: MerchantSerializer.new(merchant)
     end
   end
 
+  def find
+    # if params[:name] == nil
+    #   render status: 400
+    # end
+    x = Merchant.find_by(name: params[:name])
+    # binding.pry
+    if x == nil
+      merchant = Merchant.where("lower(name) like ?", "%#{params[:name].downcase}%")
+      # binding.pry
+      # render json: MerchantSerializer.new(merchant.first)
+      if merchant == []
+        render json: {data: {}}
+      else
+        render json: MerchantSerializer.new(merchant.first)
+      end
+    else
+      render json: MerchantSerializer.new(x)
+    end
+  end
+
+
+  def find_all
+      merchant = Merchant.where("lower(name) like ?", "%#{params[:name].downcase}%")
+      render json: MerchantSerializer.new(merchant)
+  end
 
 
 end

@@ -25,19 +25,6 @@ describe "customers API" do
       expect(merchants["data"][2]['attributes']["name"]).to eq(merchant_3.name)
     end
 
-    it 'can show one page at a time' do
-
-      create_list(:merchant, 50)
-
-      expect(Merchant.all.length).to eq(50)
-
-
-      get '/api/v1/merchants?page=1'
-
-      # expect(Merchant["data"].length).to eq(20)
-
-    end
-
     describe 'can show one page at a time' do
       it 'first page ' do
         create_list(:merchant, 50)
@@ -48,7 +35,7 @@ describe "customers API" do
         expect(merchants["data"].length).to eq(20)
       end
 
-      it 'can a second page' do
+      it 'second page' do
         create_list(:merchant, 50)
 
         get '/api/v1/merchants?page=2'
@@ -82,78 +69,136 @@ describe "customers API" do
     end
 
 
+    describe 'can change number of merchants on a page ' do
+      it 'can change how many merchants are on a page' do
+        create_list(:merchant, 50)
 
-    it 'can change how many merchants are on a page' do
-      create_list(:merchant, 50)
+        get '/api/v1/merchants?per_page=5'
+        merchants = JSON.parse(response.body)
 
-      get '/api/v1/merchants?per_page=5'
-      merchants = JSON.parse(response.body)
+        expect(merchants["data"].length).to eq(5)
+      end
+      it 'can change both page and per_page simultaniously' do
 
-      expect(merchants["data"].length).to eq(5)
+        create_list(:merchant, 50)
+
+        get '/api/v1/merchants?per_page=10&page=2'
+        merchants = JSON.parse(response.body)
+
+        expect(merchants["data"].length).to eq(10)
+
+
+        m = Merchant.all[10]
+        m4 = Merchant.all[19]
+
+        expect(merchants["data"].first['id']).to eq(m.id.to_s)
+        expect(merchants["data"].last['id']).to eq(m4.id.to_s)
+      end
     end
 
-    it 'can change how many merchants are  are on a page' do
-
-      create_list(:merchant, 50)
-
-      get '/api/v1/merchants?per_page=5'
-      merchants = JSON.parse(response.body)
-
-      expect(merchants["data"].length).to eq(5)
+    describe 'sad paths' do
     end
-
-    it 'can change both page and per_page simultaniously' do
-
-      create_list(:merchant, 50)
-
-      get '/api/v1/merchants?per_page=10&page=2'
-      merchants = JSON.parse(response.body)
-
-      expect(merchants["data"].length).to eq(10)
-
-
-      m = Merchant.all[10]
-      m4 = Merchant.all[19]
-
-      expect(merchants["data"].first['id']).to eq(m.id.to_s)
-      expect(merchants["data"].last['id']).to eq(m4.id.to_s)
-    end
-
 
   end
 
 
+#########
+  describe "can get one merchant by its id" do
+    it "happy path " do
 
-  # describe "can get one merchant by its id" do
-  #   it "happy path " do
-  #
-  #     merchant = Merchant.create(name: "my merchant name")
-  #
-  #     get "/api/v1/merchants/#{merchant.id}"
-  #
-  #     merchant_data = JSON.parse(response.body, symbolize_names: true)
-  #     merchant_id = (merchant.id).to_s
-  #
-  #     expect(response).to be_successful
-  #
-  #     expect(merchant_data[:data]).to have_key(:id)
-  #     expect(merchant_data[:data][:id]).to eq(merchant_id)
-  #
-  #     expect(merchant_data[:data][:attributes]).to have_key(:name)
-  #     expect(merchant_data[:data][:attributes][:name]).to be_a(String)
-  #   end
-  #
-  #   it "sad path " do
-  #
-  #     merchant = Merchant.create(name: "my merchant name")
-  #
-  #     get "/api/v1/merchants/#{merchant.id + 100}"
-  #
-  #     status = response.status
-  #     expect(response.status).to eq(404)
-  #   end
-  # end
+      merchant = Merchant.create(name: "my merchant name")
+
+      get "/api/v1/merchants/#{merchant.id}"
+
+      merchant_data = JSON.parse(response.body, symbolize_names: true)
+      merchant_id = (merchant.id).to_s
+
+      expect(response).to be_successful
+
+      expect(merchant_data[:data]).to have_key(:id)
+      expect(merchant_data[:data][:id]).to eq(merchant_id)
+
+      expect(merchant_data[:data][:attributes]).to have_key(:name)
+      expect(merchant_data[:data][:attributes][:name]).to be_a(String)
+    end
+
+    it "sad path " do
+
+      merchant = Merchant.create(name: "my merchant name")
+
+      get "/api/v1/merchants/#{merchant.id + 100}"
+
+      status = response.status
+      expect(response.status).to eq(404)
+    end
+  end
 
 
 
+
+  describe 'merchant: find ' do
+
+    it 'returns an exact match before a partial match' do
+      merchant_1 = Merchant.create(name: "test merchant")
+      merchant_2 = Merchant.create(name: "merchant test")
+      merchant_3 = Merchant.create(name: "test")
+
+      get '/api/v1/merchants/find?name=test'
+      merchant = JSON.parse(response.body)
+
+      expect(merchant["data"]["id"]).to eq(merchant_3.id.to_s)
+    end
+    it 'works with a partial match' do
+      merchant_0 = Merchant.create(name: "1 2 3")
+      merchant_1 = Merchant.create(name: "tester ")
+      merchant_2 = Merchant.create(name: " testing")
+      merchant_3 = Merchant.create(name: "tested")
+
+      get '/api/v1/merchants/find?name=test'
+      merchant = JSON.parse(response.body)
+
+      expect(merchant["data"]["id"]).to eq(merchant_1.id.to_s)
+    end
+
+    it 'case insensetive' do
+      merchant_1 = Merchant.create(name: "TeStInG")
+      merchant_2 = Merchant.create(name: "failed")
+
+      get '/api/v1/merchants/find?name=test'
+      merchant = JSON.parse(response.body)
+
+      expect(merchant["data"]['id']).to eq(merchant_1.id.to_s)
+    end
+
+  end
+
+
+  describe 'merchant: find_all ' do
+
+    it 'works with partial matches and exact matches' do
+      merchant_1 = Merchant.create(name: "test merchant")
+      merchant_2 = Merchant.create(name: "merchant test")
+      merchant_3 = Merchant.create(name: "no")
+      merchant_4 = Merchant.create(name: "test")
+
+      get '/api/v1/merchants/find_all?name=test'
+      merchants = JSON.parse(response.body)
+
+      expect(merchants["data"][0]["id"]).to eq(merchant_1.id.to_s)
+      expect(merchants["data"][1]["id"]).to eq(merchant_2.id.to_s)
+      expect(merchants["data"][2]["id"]).to eq(merchant_4.id.to_s)
+    end
+
+
+
+    it 'case insensetive' do
+      merchant_1 = Merchant.create(name: "TeStInG")
+      merchant_2 = Merchant.create(name: "failed")
+
+      get '/api/v1/merchants/find_all?name=test'
+      merchants = JSON.parse(response.body)
+      expect(merchants["data"][0]['id']).to eq(merchant_1.id.to_s)
+    end
+
+  end
 end
