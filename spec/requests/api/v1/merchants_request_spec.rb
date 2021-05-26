@@ -1,5 +1,5 @@
-describe "customers API" do
-
+require 'rails_helper'
+RSpec.describe 'merchants request api tests', type: :request do
   describe "merchant index" do
     it "sends a list of merchants" do
       merchant_1 = Merchant.create(name: "marchant one")
@@ -188,8 +188,6 @@ describe "customers API" do
       expect(merchants["data"][1]["id"]).to eq(merchant_2.id.to_s)
       expect(merchants["data"][2]["id"]).to eq(merchant_4.id.to_s)
     end
-
-
 
     it 'case insensetive' do
       merchant_1 = Merchant.create(name: "TeStInG")
