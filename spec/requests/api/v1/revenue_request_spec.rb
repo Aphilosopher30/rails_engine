@@ -23,15 +23,11 @@ RSpec.describe 'revenue requests'  do
 
       revenue  = JSON.parse(response.body)
 
-      # binding.pry
-
       expect(revenue["data"]['id']).to eq(merchant.id.to_s)
       expect(revenue["data"]['attributes']['revenue']).to eq(40.0)
-
-
     end
 
-    it "happy path" do
+    it "sad path" do
       merchant = Merchant.create!(name: "mel")
       customer = Customer.create!(first_name: "Abe", last_name: "Oldman")
 
