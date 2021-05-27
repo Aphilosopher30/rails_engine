@@ -32,6 +32,7 @@ RSpec.describe 'items'  do
 
       describe 'can show one page at a time' do
         it 'first page ' do
+          merchant0 = Merchant.create!(name: "alber")
           merchant1 = Merchant.create!(name: "bob ")
           merchant2 = Merchant.create!(name: "cat")
           merchant3 = Merchant.create!(name: "dog")
@@ -49,13 +50,14 @@ RSpec.describe 'items'  do
           item22 = merchant2.items.create!(name: "twenty three", description: "thingy", unit_price: 10)
           item23 = merchant2.items.create!(name: "twenty four", description: "thingy", unit_price: 10)
 
-          get '/api/v1/merchants?page=1&per_page=5'
+          get '/api/v1/items?page=1&per_page=5'
           items = JSON.parse(response.body)
 
           expect(items["data"].length).to eq(5)
         end
 
         it 'second page' do
+          merchant0 = Merchant.create!(name: "alber")
           merchant1 = Merchant.create!(name: "bob ")
           merchant2 = Merchant.create!(name: "cat")
           merchant3 = Merchant.create!(name: "dog")
@@ -73,13 +75,15 @@ RSpec.describe 'items'  do
           item22 = merchant2.items.create!(name: "twenty three", description: "thingy", unit_price: 10)
           item23 = merchant2.items.create!(name: "twenty four", description: "thingy", unit_price: 10)
 
-          get '/api/v1/merchants?page=2er_page=5'
+          get '/api/v1/items?page=2&per_page=5'
           items = JSON.parse(response.body)
 
-          expect(items["data"].length).to eq(20)
+          expect(items["data"].length).to eq(5)
+          expect(items["data"].first["id"]).to eq(item11.id.to_s)
         end
 
         it 'last page can be extra short' do
+          merchant0 = Merchant.create!(name: "alber")
           merchant1 = Merchant.create!(name: "bob ")
           merchant2 = Merchant.create!(name: "cat")
           merchant3 = Merchant.create!(name: "dog")
@@ -97,13 +101,14 @@ RSpec.describe 'items'  do
           item22 = merchant2.items.create!(name: "twenty three", description: "thingy", unit_price: 10)
           item23 = merchant2.items.create!(name: "twenty four", description: "thingy", unit_price: 10)
 
-          get '/api/v1/merchants?page=3'
+          get '/api/v1/items?page=3&per_page=5'
           items = JSON.parse(response.body)
 
           expect(items["data"].length).to eq(2)
         end
 
         it 'page number less than 1 returns page 1' do
+          merchant0 = Merchant.create!(name: "alber")
           merchant1 = Merchant.create!(name: "bob ")
           merchant2 = Merchant.create!(name: "cat")
           merchant3 = Merchant.create!(name: "dog")
@@ -124,8 +129,7 @@ RSpec.describe 'items'  do
           first_item = Item.all.first
           last_item = Item.all[9]
 
-
-          get '/api/v1/merchants?page=0&per_page=10'
+          get '/api/v1/items?page=0&per_page=10'
           item = JSON.parse(response.body)
 
           expect(item["data"].first['id']).to eq(first_item.id.to_s)
