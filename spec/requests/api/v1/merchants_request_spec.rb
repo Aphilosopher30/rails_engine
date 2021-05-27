@@ -1,5 +1,6 @@
 require 'rails_helper'
 RSpec.describe 'merchants request api tests', type: :request do
+
   describe "merchant index" do
     it "sends a list of merchants" do
       merchant_1 = Merchant.create(name: "marchant one")
@@ -95,12 +96,7 @@ RSpec.describe 'merchants request api tests', type: :request do
         expect(merchants["data"].last['id']).to eq(m4.id.to_s)
       end
     end
-
-    describe 'sad paths' do
-    end
-
   end
-
 
 #########
   describe "can get one merchant by its id" do
@@ -199,4 +195,43 @@ RSpec.describe 'merchants request api tests', type: :request do
     end
 
   end
+
+  describe 'get items that belong to a merchant' do
+    it 'gets items that belong to merchant' do
+      merchant0 = Merchant.create!(name: "alber")
+      merchant1 = Merchant.create!(name: "bob ")
+      merchant2 = Merchant.create!(name: "cat")
+
+      item0 = merchant0.items.create!(name: "zero", description: "more", unit_price: 5)
+      item1 = merchant0.items.create!(name: "one", description: "thingy", unit_price: 103)
+      item2 = merchant0.items.create!(name: "two", description: "dohicky", unit_price: 16780)
+      item3 = merchant0.items.create!(name: "three", description: "stuff", unit_price: 9)
+      item10 = merchant1.items.create!(name: "ten", description: "more", unit_price: 10)
+      item11 = merchant1.items.create!(name: "eleven", description: "thingy", unit_price: 20)
+      item12 = merchant1.items.create!(name: "twelve", description: "doodle", unit_price: 30)
+      item20 = merchant2.items.create!(name: "twenty", description: "greee", unit_price: 6)
+
+      get "/api/v1/merchants/#{merchant1.id}/items"
+      item = JSON.parse(response.body, symbolize_names: true)
+
+      expect(item[:data].length).to eq(3)
+
+      expect(item[:data][0][:id]).to eq(item10.id.to_s)
+      expect(item[:data][0][:attributes][:name]).to eq(item10.name)
+      expect(item[:data][0][:attributes][:description]).to eq(item10.description)
+      expect(item[:data][0][:attributes][:unit_price]).to eq(item10.unit_price)
+
+      expect(item[:data][1][:id]).to eq(item11.id.to_s)
+      expect(item[:data][1][:attributes][:name]).to eq(item11.name)
+      expect(item[:data][1][:attributes][:description]).to eq(item11.description)
+      expect(item[:data][1][:attributes][:unit_price]).to eq(item11.unit_price)
+
+      expect(item[:data][2][:id]).to eq(item12.id.to_s)
+      expect(item[:data][2][:attributes][:name]).to eq(item12.name)
+      expect(item[:data][2][:attributes][:description]).to eq(item12.description)
+      expect(item[:data][2][:attributes][:unit_price]).to eq(item12.unit_price)
+    end
+
+  end
+
 end

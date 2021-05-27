@@ -1,7 +1,6 @@
 class Api::V1::ItemsController < ApplicationController
 
   def index
-
     page = params.fetch(:page, 1).to_i
     if page < 1
       page = 1
@@ -13,12 +12,23 @@ class Api::V1::ItemsController < ApplicationController
 
   def show
     @item = Item.find_by(id: params[:id])
-    # binding.pry
     if @item.nil?
       info_not_found
     else
       render json: ItemSerializer.new(@item)
     end
   end
+
+  def merchant
+    @item = Item.find_by(id: params[:id])
+    if @item.nil?
+      info_not_found
+    else
+      merchant = @item.merchant
+      render json: MerchantSerializer.new(merchant)
+    end
+  end
+
+  
 
 end
