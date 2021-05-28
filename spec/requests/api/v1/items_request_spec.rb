@@ -214,4 +214,22 @@ RSpec.describe 'items'  do
 
     end
   end
+
+
+
+  # it "find items by price" do
+  #   merchant1 = Merchant.create(name: "my merchant name")
+  #
+  #   item1 = merchant1.items.create!(name: "one", description: "thingy", unit_price: 1)
+  #   item2 = merchant1.items.create!(name: "two", description: "dohicky", unit_price: 2)
+  #   item3 = merchant1.items.create!(name: "three", description: "stuff", unit_price: 3)
+  #   item4 = merchant1.items.create!(name: "four", description: "asdfasdfsdaf saf", unit_price: 4)
+  #   item5 = merchant1.items.create!(name: "five", description: "more", unit_price: 5)
+  #
+  #   get "/api/v1/items/find?max_price=4"
+  #   get "/api/v1/items/find_all?min_price=2"
+  #
+  #
+  # end
+
 end

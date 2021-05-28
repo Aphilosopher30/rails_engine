@@ -234,4 +234,11 @@ RSpec.describe 'merchants request api tests', type: :request do
 
   end
 
+  # it "gets merchants with most items sold" do
+  #
+  #   get "/api/v1/merchants/most_items"
+  #
+  #
+  # end
+
 end
