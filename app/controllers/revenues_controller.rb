@@ -8,7 +8,8 @@ class RevenuesController < ApplicationController
     if merchant == nil
       info_not_found
     else
-      revenue = merchant.invoices.where('invoices.status = ?', "shipped").sum('invoice_items.quantity*invoice_items.unit_price')
+      revenue = merchant.invoices.where('invoices.status = ?', "shipped")
+      .sum('invoice_items.quantity*invoice_items.unit_price')
 
 
       test = Revenue.new(merchant.id, revenue)
@@ -23,7 +24,8 @@ class RevenuesController < ApplicationController
       number = 0
     end
 
-    merchants = Merchant.joins(items: {invoice_items: {invoice: :transactions}}).where('invoices.status = ?', "shipped").where('transactions.result = ?', "success")
+    merchants = Merchant.joins(items: {invoice_items: {invoice: :transactions}})
+      .where('invoices.status = ?', "shipped").where('transactions.result = ?', "success")
       .group('merchants.id').select("merchants.*, sum(invoice_items.quantity*invoice_items.unit_price) as total_revenue")
       .order(total_revenue: :desc).limit(number)
 

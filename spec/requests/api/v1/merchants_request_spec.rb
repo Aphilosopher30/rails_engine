@@ -130,8 +130,6 @@ RSpec.describe 'merchants request api tests', type: :request do
   end
 
 
-
-
   describe 'merchant: find ' do
 
     it 'returns an exact match before a partial match' do
