@@ -189,31 +189,31 @@ RSpec.describe 'items'  do
     end
   end
 
-  describe "get an item's merchant" do
-    it "happy path" do
-
-      merchant = Merchant.create(name: "my merchant name")
-      item = merchant.items.create!(name: "one", description: "thingy", unit_price: 10)
-      get "/api/v1/items/#{item.id}/merchant"
-      merchant_return = JSON.parse(response.body, symbolize_names: true)
-
-
-      expect(merchant_return[:data]).to have_key(:id)
-      expect(merchant_return[:data][:id]).to eq(merchant.id.to_s)
-
-      expect(merchant_return[:data][:attributes]).to have_key(:name)
-      expect(merchant_return[:data][:attributes][:name]).to eq(merchant.name)
-    end
-
-    it "sad path" do
-      merchant = Merchant.create(name: "my merchant name")
-      get "/api/v1/items/#{33}/merchant"
-
-      status = response.status
-      expect(response.status).to eq(404)
-
-    end
-  end
+  # describe "get an item's merchant" do
+  #   it "happy path" do
+  #
+  #     merchant = Merchant.create(name: "my merchant name")
+  #     item = merchant.items.create!(name: "one", description: "thingy", unit_price: 10)
+  #     get "/api/v1/items/#{item.id}/merchant"
+  #     merchant_return = JSON.parse(response.body, symbolize_names: true)
+  #
+  #
+  #     expect(merchant_return[:data]).to have_key(:id)
+  #     expect(merchant_return[:data][:id]).to eq(merchant.id.to_s)
+  #
+  #     expect(merchant_return[:data][:attributes]).to have_key(:name)
+  #     expect(merchant_return[:data][:attributes][:name]).to eq(merchant.name)
+  #   end
+  #
+  #   it "sad path" do
+  #     merchant = Merchant.create(name: "my merchant name")
+  #     get "/api/v1/items/#{33}/merchant"
+  #
+  #     status = response.status
+  #     expect(response.status).to eq(404)
+  #
+  #   end
+  # end
 
 
 
