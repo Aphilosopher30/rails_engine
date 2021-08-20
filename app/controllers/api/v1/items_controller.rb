@@ -98,7 +98,6 @@ class Api::V1::ItemsController < ApplicationController
     else
       revised_item.update(item_param)
       render json: ItemSerializer.new(revised_item)
-
     end
 
 

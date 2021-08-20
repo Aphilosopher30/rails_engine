@@ -7,7 +7,6 @@ RSpec.describe 'merchants request api tests', type: :request do
       merchant_2 = Merchant.create(name: "marchant two")
       merchant_3 = Merchant.create(name: "marchant three")
 
-
       get '/api/v1/merchants'
 
       expect(response).to be_successful

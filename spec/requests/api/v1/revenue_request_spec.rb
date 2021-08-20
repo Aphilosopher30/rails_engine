@@ -42,14 +42,10 @@ RSpec.describe 'revenue requests'  do
       invoice_item4 = InvoiceItem.create!(item: item1, invoice: invoice2, quantity: 1, unit_price: 10)
       invoice_item5 = InvoiceItem.create!(item: item1, invoice: invoice3, quantity: 100, unit_price: 100)
 
-
-
       get "/api/v1/revenue/merchants/#{merchant.id+100}"
 
       status = response.status
       expect(response.status).to eq(404)
-
-
 
     end
   end

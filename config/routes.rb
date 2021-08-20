@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :merchants, only: [:index, :show]
       resources :items, only: [:index, :show, :create, :destroy, :update]
-      get "/items/:id/merchant", to: 'items#merchant'
       get '/merchants/:id/items', to: 'merchants#items'
       get "/merchants/most_items", to: 'merchants#most_items'
     end
