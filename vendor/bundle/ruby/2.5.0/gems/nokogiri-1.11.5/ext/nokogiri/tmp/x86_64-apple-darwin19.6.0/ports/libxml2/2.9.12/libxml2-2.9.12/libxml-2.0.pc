@@ -1,0 +1,13 @@
+prefix=/Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.11.5/ports/x86_64-apple-darwin19.6.0/libxml2/2.9.12
+exec_prefix=${prefix}
+libdir=/Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.11.5/ports/x86_64-apple-darwin19.6.0/libxml2/2.9.12/lib
+includedir=${prefix}/include
+modules=1
+
+Name: libXML
+Version: 2.9.12
+Description: libXML library version2.
+Requires:
+Libs: -L${libdir} -lxml2
+Libs.private:  -lpthread -lz   -liconv -lm  
+Cflags: -I${includedir}/libxml2 

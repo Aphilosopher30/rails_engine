@@ -1,0 +1,121 @@
+current directory: /Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.11.5/ext/nokogiri
+/Users/aphilosopher30/.rbenv/versions/2.5.3/bin/ruby -r ./siteconf20210820-69559-1f1f6g6.rb extconf.rb
+checking for whether -g is accepted as CFLAGS... yes
+checking for whether -Winline is accepted as CFLAGS... yes
+checking for whether -Wmissing-noreturn is accepted as CFLAGS... yes
+checking for whether -Wno-error=unused-command-line-argument-hard-error-in-future is accepted as CFLAGS... no
+Building nokogiri using packaged libraries.
+Static linking is enabled.
+Cross build is disabled.
+checking for iconv.h... yes
+checking for gzdopen() in -lz... yes
+Using mini_portile version 2.5.1
+checking for iconv... yes
+---------- IMPORTANT NOTICE ----------
+Building Nokogiri with a packaged version of libxml2-2.9.12.
+Configuration options: --host\=x86_64-apple-darwin19.6.0 --enable-static --disable-shared --libdir\=/Users/aphilosopher30/Desktop/turing_work/old\ mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.11.5/ports/x86_64-apple-darwin19.6.0/libxml2/2.9.12/lib --with-iconv\=yes --without-python --without-readline --with-c14n --with-debug --with-threads --disable-shared --enable-static RANLIB\=/usr/bin/ranlib AR\=/usr/bin/ar CFLAGS\=-O2\ -U_FORTIFY_SOURCE\ -g\ -fPIC
+The following patches are being applied:
+  - 0001-Remove-script-macro-support.patch
+  - 0002-Update-entities-to-remove-handling-of-ssi.patch
+  - 0003-libxml2.la-is-in-top_builddir.patch
+  - 0004-use-glibc-strlen.patch
+  - 0005-avoid-isnan-isinf.patch
+  - 0006-update-automake-files-for-arm64.patch
+
+The Nokogiri maintainers intend to provide timely security updates, but if
+this is a concern for you and want to use your OS/distro system library
+instead, then abort this installation process and install nokogiri as
+instructed at:
+
+  https://nokogiri.org/tutorials/installing_nokogiri.html#installing-using-standard-system-libraries
+
+Note, however, that nokogiri cannot guarantee compatiblity with every
+version of libxml2 that may be provided by OS/package vendors.
+
+Extracting libxml2-2.9.12.tar.gz into tmp/x86_64-apple-darwin19.6.0/ports/libxml2/2.9.12... OK
+Running git apply with /Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.11.5/patches/libxml2/0001-Remove-script-macro-support.patch... OK
+Running git apply with /Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.11.5/patches/libxml2/0002-Update-entities-to-remove-handling-of-ssi.patch... OK
+Running git apply with /Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.11.5/patches/libxml2/0003-libxml2.la-is-in-top_builddir.patch... OK
+Running git apply with /Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.11.5/patches/libxml2/0004-use-glibc-strlen.patch... OK
+Running git apply with /Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.11.5/patches/libxml2/0005-avoid-isnan-isinf.patch... OK
+Running git apply with /Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.11.5/patches/libxml2/0006-update-automake-files-for-arm64.patch... OK
+Running 'configure' for libxml2 2.9.12... OK
+Running 'compile' for libxml2 2.9.12... OK
+Running 'install' for libxml2 2.9.12... ERROR, review '/Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.11.5/ext/nokogiri/tmp/x86_64-apple-darwin19.6.0/ports/libxml2/2.9.12/install.log' to see what happened. Last lines are:
+========================================================================
+Making install in libxml
+make[4]: Nothing to be done for `install-exec-am'.
+ ../.././install-sh -c -d '/Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.11.5/ports/x86_64-apple-darwin19.6.0/libxml2/2.9.12/include/libxml2/libxml'
+ /usr/bin/install -c -m 644 SAX.h entities.h encoding.h parser.h parserInternals.h xmlerror.h HTMLparser.h HTMLtree.h debugXML.h tree.h list.h hash.h xpath.h xpathInternals.h xpointer.h xinclude.h xmlIO.h xmlmemory.h nanohttp.h nanoftp.h uri.h valid.h xlink.h xmlversion.h DOCBparser.h catalog.h threads.h globals.h c14n.h xmlautomata.h xmlregexp.h xmlmodule.h xmlschemas.h schemasInternals.h xmlschemastypes.h xmlstring.h xmlunicode.h xmlreader.h relaxng.h dict.h '/Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.11.5/ports/x86_64-apple-darwin19.6.0/libxml2/2.9.12/include/libxml2/libxml'
+ /usr/bin/install -c -m 644 SAX2.h xmlexports.h xmlwriter.h chvalid.h pattern.h xmlsave.h schematron.h '/Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.11.5/ports/x86_64-apple-darwin19.6.0/libxml2/2.9.12/include/libxml2/libxml'
+make[4]: Nothing to be done for `install-exec-am'.
+make[4]: Nothing to be done for `install-data-am'.
+Making install in .
+ ./install-sh -c -d '/Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.11.5/ports/x86_64-apple-darwin19.6.0/libxml2/2.9.12/lib'
+ /bin/sh ./libtool   --mode=install /usr/bin/install -c   libxml2.la '/Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.11.5/ports/x86_64-apple-darwin19.6.0/libxml2/2.9.12/lib'
+libtool: install: /usr/bin/install -c .libs/libxml2.lai /Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/nokogiri-1.11.5/ports/x86_64-apple-darwin19.6.0/libxml2/2.9.12/lib/libxml2.la
+usage: install [-bCcpSsv] [-B suffix] [-f flags] [-g group] [-m mode]
+               [-o owner] file1 file2
+       install [-bCcpSsv] [-B suffix] [-f flags] [-g group] [-m mode]
+               [-o owner] file1 ... fileN directory
+       install -d [-v] [-g group] [-m mode] [-o owner] directory ...
+make[3]: *** [install-libLTLIBRARIES] Error 64
+make[2]: *** [install-am] Error 2
+make[1]: *** [install-recursive] Error 1
+make: *** [install] Error 2
+========================================================================
+*** extconf.rb failed ***
+Could not create Makefile due to some reason, probably lack of necessary
+libraries and/or headers.  Check the mkmf.log file for more details.  You may
+need configuration options.
+
+Provided configuration options:
+	--with-opt-dir
+	--without-opt-dir
+	--with-opt-include
+	--without-opt-include=${opt-dir}/include
+	--with-opt-lib
+	--without-opt-lib=${opt-dir}/lib
+	--with-make-prog
+	--without-make-prog
+	--srcdir=.
+	--curdir
+	--ruby=/Users/aphilosopher30/.rbenv/versions/2.5.3/bin/$(RUBY_BASE_NAME)
+	--help
+	--clean
+	--prevent-strip
+	--enable-system-libraries
+	--disable-system-libraries
+	--use-system-libraries
+	--enable-system-libraries
+	--disable-system-libraries
+	--use-system-libraries
+	--enable-static
+	--disable-static
+	--enable-cross-build
+	--disable-cross-build
+	--with-zlib-dir
+	--without-zlib-dir
+	--with-zlib-include
+	--without-zlib-include=${zlib-dir}/include
+	--with-zlib-lib
+	--without-zlib-lib=${zlib-dir}/lib
+/Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/mini_portile2-2.5.1/lib/mini_portile2/mini_portile.rb:427:in `block in execute': Failed to complete install task (RuntimeError)
+	from /Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/mini_portile2-2.5.1/lib/mini_portile2/mini_portile.rb:393:in `chdir'
+	from /Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/mini_portile2-2.5.1/lib/mini_portile2/mini_portile.rb:393:in `execute'
+	from /Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/mini_portile2-2.5.1/lib/mini_portile2/mini_portile.rb:130:in `install'
+	from /Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/mini_portile2-2.5.1/lib/mini_portile2/mini_portile.rb:165:in `cook'
+	from extconf.rb:507:in `block (2 levels) in process_recipe'
+	from extconf.rb:290:in `block in chdir_for_build'
+	from extconf.rb:289:in `chdir'
+	from extconf.rb:289:in `chdir_for_build'
+	from extconf.rb:506:in `block in process_recipe'
+	from extconf.rb:409:in `tap'
+	from extconf.rb:409:in `process_recipe'
+	from extconf.rb:744:in `<main>'
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/extensions/x86_64-darwin-19/2.5.0/nokogiri-1.11.5/mkmf.log
+
+extconf failed, exit code 1

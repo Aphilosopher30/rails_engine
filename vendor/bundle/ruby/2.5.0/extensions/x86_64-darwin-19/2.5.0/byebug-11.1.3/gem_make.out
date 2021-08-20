@@ -1,0 +1,19 @@
+current directory: /Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/byebug-11.1.3/ext/byebug
+/Users/aphilosopher30/.rbenv/versions/2.5.3/bin/ruby -r ./siteconf20210820-69559-b04xh7.rb extconf.rb
+creating Makefile
+
+current directory: /Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/byebug-11.1.3/ext/byebug
+make "DESTDIR=" clean
+
+current directory: /Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/byebug-11.1.3/ext/byebug
+make "DESTDIR="
+compiling breakpoint.c
+compiling byebug.c
+compiling context.c
+compiling locker.c
+compiling threads.c
+linking shared-object byebug/byebug.bundle
+
+current directory: /Users/aphilosopher30/Desktop/turing_work/old mods/mod_3/rails_engine/rails-engine/vendor/bundle/ruby/2.5.0/gems/byebug-11.1.3/ext/byebug
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 byebug.bundle ./.gem.20210820-69559-1slif8j/byebug
